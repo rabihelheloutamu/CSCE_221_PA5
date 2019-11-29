@@ -2,7 +2,7 @@
 
 int main()
 {
-	/**vector<string> vec;						//vector to represent the raw txt file
+	/**vector<string> vec;						//vector to represent the raw txt file test
 	string str;								//string variable to fill each position in vector
 	ifstream intxt("dictionary.txt");		//initialize the ifstream operator
 	
