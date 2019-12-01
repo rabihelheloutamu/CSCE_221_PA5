@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 class HashTable{				//Universal Hash Table Definition
 protected:
 	int mod;					//remainder of what? = mod
