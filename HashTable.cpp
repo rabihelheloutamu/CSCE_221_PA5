@@ -8,8 +8,9 @@ HashTable::~HashTable() { //default destructor
 
 int HashTable::hash(string s) {					//hash function to determine index where string key goes
 	int ascii = 0;								//initialize var ascii as an integer
+	int size = s.size();						//number of characters in the string
 
-	for (int i = 0; i < s.size(); i++) {		//for loop into each letter of each string
+	for (int i = 0; i < size; i++) {			//for loop into each letter of each string
 		ascii = ascii + (s[i] * cst);			//ascii will be equal to the addition of each letter multiplied by a cst
 	}
 
