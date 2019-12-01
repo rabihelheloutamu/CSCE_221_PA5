@@ -1,14 +1,18 @@
 #include "ChainingHashTable.h"
 
-///////////////////// TODO: FILL OUT THE FUNCTIONS /////////////////////
+ChainingHashTable::ChainingHashTable() {		//vector and list constructors already built in stl
+	vector< vector<string> > v(53000);			//53000 will be the number of buckets to reduce the number of collisions
+	vec = v;									//set the private vector to a vector of buckets of size 53000
 
-// constructor (NOTE: graders will use a default constructor for testing)
-ChainingHashTable::ChainingHashTable() {
-	
-}
+	mod = 53000;								//to reduce collisions, mod was chosen to be the number of unique words
 
-// destructor
-ChainingHashTable::~ChainingHashTable() {
+	cst = 181;									/**taking "cab" to be the smallest ascii valued 3 letter word, 181 is the
+												   smallest integer we can multiply such that every final ascii value is
+												   is greater than 53000, so that ascii % mod is a valid return number   **/
+};
+
+
+ChainingHashTable::~ChainingHashTable() {		//default destructor already built in vector and list stl
 
 }
 
