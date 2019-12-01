@@ -1,24 +1,19 @@
 #include "HashTable.h"
 
-///////////////////// TODO: FILL OUT THE FUNCTIONS /////////////////////
-
-// default constructor
-HashTable::HashTable() {
+HashTable::HashTable() {  //default constructor
 }
 
-// destructor
-HashTable::~HashTable() {
+HashTable::~HashTable() { //default destructor
 }
 
-// hash function to determine index where string key goes, as mentioned in the instructions
-int HashTable::hash(string s) {
-	int ascii = 0;
+int HashTable::hash(string s) {					//hash function to determine index where string key goes
+	int ascii = 0;								//initialize var ascii as an integer
 
-	for (int i = 0; i < s.size(); i++) {
-		ascii = ascii + (s[i] * cst);
+	for (int i = 0; i < s.size(); i++) {		//for loop into each letter of each string
+		ascii = ascii + (s[i] * cst);			//ascii will be equal to the addition of each letter multiplied by a cst
 	}
 
-	return ascii % mod;
+	return ascii % mod;							//the hash will be total ascii mod some number chosen
 }
 
 /** NOTE: I did not include isEmpty here because the vec representing the hash will be defined separately...
