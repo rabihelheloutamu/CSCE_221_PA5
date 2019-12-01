@@ -11,7 +11,7 @@ using namespace std;
 class HashTable{				//Universal Hash Table Definition
 protected:
 	int mod;					//remainder of what? = mod
-	int cst;					//constant to be multiploed to each ascii value
+	int cst;					//constant to be multiplied to each ascii value
 	int hash(string s);			//returns the position key s needs to be placed in hash table
 
 public: 
