@@ -4,7 +4,6 @@
 
 // default constructor
 HashTable::HashTable() {
-
 }
 
 // destructor
@@ -12,13 +11,15 @@ HashTable::~HashTable() {
 }
 
 // hash function to determine index where string key goes, as mentioned in the instructions
-int HashTable::hash(std::string s) {
+int HashTable::hash(string s) {
+	int ascii = 0;
 
-	return 0;
+	for (int i = 0; i < s.size(); i++) {
+		ascii = ascii + (s[i] * cst);
+	}
+
+	return ascii % mod;
 }
 
-// returns a boolean of whether the hash table is empty or not
-bool HashTable::isEmpty() const {
-	
-	return false;
-}
+/** NOTE: I did not include isEmpty here because the vec representing the hash will be defined separately...
+          in each HashTable method itself.  **/
