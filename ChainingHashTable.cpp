@@ -1,8 +1,8 @@
 #include "ChainingHashTable.h"
 
 ChainingHashTable::ChainingHashTable() {		//vector and list constructors already built in stl
-	vector< vector<Key> > v(58000);				//58000 will be the number of buckets to reduce the number of collisions
-	vec = v;									//set the private vector to a vector of buckets of size 53000
+	vector< vector<Key> > v(116009);			//116009 will be the number of buckets to reduce the number of collisions
+	vec = v;									//set the private vector to a vector of buckets of size 116009
 };
 
 
@@ -18,7 +18,7 @@ void ChainingHashTable::insert(string key) {
 	k.setWord(key);											//set the word of the key to be the input string
 	
 	for (int i = 0; i < vec[h].size(); i++) {				//for every word in the bucket
-		if (vec[h][i].getWord() == k.getWord()) {			//if the word already exists
+		if (vec[h][i].getWord() == key) {					//if the word already exists
 			vec[h][i].setRep(vec[h][i].getRep() + 1);		//then just add one to the value
 			return;											//then return
 		}
