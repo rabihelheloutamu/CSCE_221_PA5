@@ -4,8 +4,23 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <exception>
 
 using namespace std;
+
+class Key {		//defenition of a key for our purpose in hash tables:
+private:
+	string word;	//1) a string of characters aka a word
+	int rep;		//2) how many times it was repeated
+public:
+	Key();
+	~Key();
+
+	void setWord(string str);			//function to set the string of a key
+	void setRep(int val);
+	string getWord();
+	int getRep();
+};
 
 class HashTable{				//Universal Hash Table Definition
 protected:
