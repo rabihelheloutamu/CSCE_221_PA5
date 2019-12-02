@@ -1,6 +1,5 @@
 #include "ChainingHashTable.h"
 
-
 ChainingHashTable::ChainingHashTable() {		//vector and list constructors already built in stl
 	vector< vector<Key> > v(58000);				//58000 will be the number of buckets to reduce the number of collisions
 	vec = v;									//set the private vector to a vector of buckets of size 53000
@@ -11,7 +10,7 @@ ChainingHashTable::~ChainingHashTable() {		//default destructor already built in
 
 }
 
-// inserts the given string key
+
 void ChainingHashTable::insert(string key) {
 	int h = hash(key);										//h is the position of the word in the vector (which bucket)
 
@@ -29,34 +28,44 @@ void ChainingHashTable::insert(string key) {
 															   or a collision occured. In either case push back.**/
 }
 
-// removes the given key from the hash table - if the key is not in the list, throw an error
+
 int ChainingHashTable::remove(string key) {
-	int h = hash(key);
-	for (int i = 0; i < vec[h].size(); i++) {
-		if (vec[h][i].getWord() == key) {
-			int out = vec[h][i].getRep();
-			vec[h].erase(vec[h].begin()+i-1);
-			return out;
+	int h = hash(key);															//locate the bucket position
+	for (int i = 0; i < vec[h].size(); i++) {									//for every key in that bucket
+		if (vec[h][i].getWord() == key) {										//if the key's word = the input string
+			int out = vec[h][i].getRep();										//save the word for outputting
+			vec[h].erase(vec[h].begin()+i-1);									//delete it
+			return out;															//then output it
 		}
 	}
-	throw std::runtime_error("Remove Error: Key not found in Hash Table");
+	throw std::runtime_error("Remove Error: Key not found in Hash Table");		//if the for loop didn't run that means it was empty
 	return 0;
 }
 
-// getter to obtain the value associated with the given key
+
 int ChainingHashTable::get(string key) {
-	int h = hash(key);
-	for (int i = 0; i < vec[h].size(); i++) {
-		if (vec[h][i].getWord() == key) {
-			int out = vec[h][i].getRep();
-			return out;
+	int h = hash(key);															//locate the bucket position
+	for (int i = 0; i < vec[h].size(); i++) {									//for every key in that bucket
+		if (vec[h][i].getWord() == key) {										//if the key's word = the input string
+			return vec[h][i].getRep();											//then output it
 		}
 	}
-	throw std::runtime_error("Get Error: Key not found in Hash Table");
+	throw std::runtime_error("Get Error: Key not found in Hash Table");			//if the for loop didn't run that means it was empty
 	return 0;
 }
 
 // prints number of occurrances for all given strings to a txt file
 void ChainingHashTable::printAll(string filename) {
+	string str;								//string variable to fill each position in vector
+	ifstream intxt(filename);				//initialize the ifstream operator
 
+	while (getline(intxt, str)) {			//while getting the string of each line and saving it as str
+		insert(str);						//push the str to the back of the vector
+	}
+
+	for (int i = 0; i < vec.size(); i++) {											//for every bucket
+		for (int j = 0; j < vec[i].size(); j++) {									//and for every word in each bucket
+			cout << vec[i][j].getWord() << ": " << vec[i][j].getRep() << endl;		//output its word and give its value of repetition
+		}
+	}
 }
