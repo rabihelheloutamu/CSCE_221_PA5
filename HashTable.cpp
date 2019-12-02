@@ -24,11 +24,12 @@ int Key::getRep() {
 }
 
 HashTable::HashTable() {  //default constructor
-	mod = 58000;								//to reduce collisions, mod was chosen to be the number of unique words
+	mod = 116009;								/**to reduce collisions, the mod chosen is 1) more than 2 times larger than the unique # of words
+												   2) a prime number to reduce divisibility which will decrease hash division**/
 
-	cst = 181;									/**taking "cab" to be the smallest ascii valued 3 letter word, 181 is the
+	cst = 395;									/**taking "cab" to be the smallest ascii valued 3 letter word, 395 is the
 												   smallest integer we can multiply such that every final ascii value is
-												   is greater than 53000, so that ascii % mod is a valid return number   **/
+												   is greater than 116009, so that ascii % mod is a valid return number   **/
 }
 
 HashTable::~HashTable() { //default destructor
