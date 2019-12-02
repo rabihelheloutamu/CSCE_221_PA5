@@ -6,15 +6,15 @@
 // Linear probing hash table class
 class ProbingHashTable : public HashTable {
 private:
-	// TODO: insert additional variables here
+	vector<Key> vec;							//Hash Table is defined as a vector of keys (no buckets)
 
 public:
 	ProbingHashTable();
 	~ProbingHashTable();
-	void insert(std::string key, int val);
-	int remove(std::string key);
-	int get(std::string key);
-	void printAll(std::string filename);
+	void insert(string key);
+	int remove(string key);
+	int get(string key);
+	void printAll(string filename);
 };
 
 #endif
