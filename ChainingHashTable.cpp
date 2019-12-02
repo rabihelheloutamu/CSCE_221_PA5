@@ -1,37 +1,9 @@
 #include "ChainingHashTable.h"
 
-Key::Key() {
-	rep = 1;		//each key alone has one repetition untill added to another key
-}
-
-Key::~Key() {
-}
-
-void Key::setWord(string str) {
-	word = str;
-}
-
-void Key::setRep(int val) {
-	rep = val;
-}
-
-string Key::getWord() {
-	return word;
-}
-
-int Key::getRep() {
-	return rep;
-}
 
 ChainingHashTable::ChainingHashTable() {		//vector and list constructors already built in stl
-	vector< vector<Key> > v(53000);				//53000 will be the number of buckets to reduce the number of collisions
+	vector< vector<Key> > v(58000);				//58000 will be the number of buckets to reduce the number of collisions
 	vec = v;									//set the private vector to a vector of buckets of size 53000
-
-	mod = 53000;								//to reduce collisions, mod was chosen to be the number of unique words
-
-	cst = 181;									/**taking "cab" to be the smallest ascii valued 3 letter word, 181 is the
-												   smallest integer we can multiply such that every final ascii value is
-												   is greater than 53000, so that ascii % mod is a valid return number   **/
 };
 
 
@@ -59,13 +31,28 @@ void ChainingHashTable::insert(string key) {
 
 // removes the given key from the hash table - if the key is not in the list, throw an error
 int ChainingHashTable::remove(string key) {
-
+	int h = hash(key);
+	for (int i = 0; i < vec[h].size(); i++) {
+		if (vec[h][i].getWord() == key) {
+			int out = vec[h][i].getRep();
+			vec[h].erase(vec[h].begin()+i-1);
+			return out;
+		}
+	}
+	throw std::runtime_error("Remove Error: Key not found in Hash Table");
 	return 0;
 }
 
 // getter to obtain the value associated with the given key
 int ChainingHashTable::get(string key) {
-
+	int h = hash(key);
+	for (int i = 0; i < vec[h].size(); i++) {
+		if (vec[h][i].getWord() == key) {
+			int out = vec[h][i].getRep();
+			return out;
+		}
+	}
+	throw std::runtime_error("Get Error: Key not found in Hash Table");
 	return 0;
 }
 
