@@ -74,8 +74,10 @@ void DoubleHashTable::printAll(string filename) {
 
 	ofstream outtext("DoubleHashing.txt");
 
-	for (int i = 0; i < vec.size(); i++) {									//for every key
-		outtext << vec[i].word << ": " << vec[i].rep << endl;		//output its word and give its value of repetition
+	for (int i = 0; i < vec.size(); i++) {							//for every key
+		if (vec[i].word.size() != 0) {
+			outtext << vec[i].word << ": " << vec[i].rep << endl;		//output its word and give its value of repetition
+		}
 	}
 }
 
