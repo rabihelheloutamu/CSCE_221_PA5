@@ -70,7 +70,7 @@ void DoubleHashTable::printAll(string filename) {
 		insert(str);						//push the str to the back of the vector
 	}
 
-	for (int i = 0; i < vec.size(); i++) {										//for every key
+	for (int i = 0; i < vec.size(); i++) {									//for every key
 		cout << vec[i].getWord() << ": " << vec[i].getRep() << endl;		//output its word and give its value of repetition
 	}
 }
