@@ -9,18 +9,9 @@
 
 using namespace std;
 
-class Key {		//defenition of a key for our purpose in hash tables:
-private:
+struct Key {		//defenition of a key for our purpose in hash tables:
 	string word;	//1) a string of characters aka a word
 	int rep;		//2) how many times it was repeated
-public:
-	Key();
-	~Key();
-
-	void setWord(string str);			//function to set the string of a key
-	void setRep(int val);
-	string getWord();
-	int getRep();
 };
 
 class HashTable{				//Universal Hash Table Definition
@@ -38,7 +29,7 @@ public:
 	virtual int remove(string key) = 0;						//function to remove key string from hash table
 	virtual int get(string key) = 0;						//get information (# of repetitions) of certain key
 	virtual void printAll(string filename) = 0;				//print all unique words with info next to them
-	virtual bool isEmpty() = 0;								//is hash empty? -- where hash is represented by the protected vector
+	bool isEmpty();											//is hash empty? -- where hash is represented by the protected vector
 };
 
 #endif

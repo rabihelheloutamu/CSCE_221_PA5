@@ -11,37 +11,37 @@ DoubleHashTable::~DoubleHashTable() {			//vector already has built in destructor
 
 }
 
-
 void DoubleHashTable::insert(string key) {
-	int h = hash(key);									//find the initial position of the word
-	int i = 0;
+	int h1 = hash(key);									//find the hash of the word
+	int h2 = secondHash(key);
+	int p = hash(key);									//position that will change each iteration (starts as hash)
+	int i = 0;											//iterator in while loop
 
-	while (vec[h].getWord().size() != 0) {				//while the position we are on is taken
-		if (vec[h].getWord() == key) {					//if that position already contains the word
-			vec[h].setRep(vec[h].getRep() + 1);			//then just add 1 to the value
+	while (vec[p].word.size() != 0) {					//while the position we are on is taken
+		if (vec[p].word == key) {						//if that position already contains the word
+			vec[p].rep++;								//then just add 1 to the value
 			size++;										//size just increased
 			return;										//and return
 		}
 		else {											//if not, then that means a collision occured
 			i++;
-			h = hash(key) + i * secondHash(key);		//on to the next hash position (hash +1)
+			p = (h1 + i * h2) % mod;					//on to the next hash position (hash +1)
 		}
 	}
 														//for loop exited that means the position is empty
 	Key k;												//initialize a key
-	k.setWord(key);										//with the input word
-	vec[h] = k;											//the vector with set position is now the intended key
+	k.word = key;										//with the input word
+	vec[p] = k;											//the vector with set position is now the intended key
 	size++;												//size just increased
 }
 
-
 int DoubleHashTable::remove(string key) {
 	Key k;																		//initialize a key
-	k.setRep(0);																//make that key completely emtpy
+	k.rep = 0;																//make that key completely emtpy
 
 	for (int i = 0; i < vec.size(); i++) {										//iterate through the entire vector since collisions may have occured
-		if (vec[i].getWord() == key) {											//if the word is found
-			int out = vec[i].getRep();											//save it's value for outputting
+		if (vec[i].word == key) {											//if the word is found
+			int out = vec[i].rep;											//save it's value for outputting
 			vec[i] = k;															//set the value to empty
 			size--;																//size just decreased
 			return out;															//return the old value
@@ -52,11 +52,10 @@ int DoubleHashTable::remove(string key) {
 	return 0;
 }
 
-
 int DoubleHashTable::get(string key) {
 	for (int i = 0; i < vec.size(); i++) {										//iterate through the entire vector since collisions may have occured
-		if (vec[i].getWord() == key) {											//if the word is found
-			return vec[i].getRep();												//return it's value
+		if (vec[i].word == key) {											//if the word is found
+			return vec[i].rep;												//return it's value
 		}
 	}
 
@@ -76,7 +75,7 @@ void DoubleHashTable::printAll(string filename) {
 	ofstream outtext("DoubleHashing.txt");
 
 	for (int i = 0; i < vec.size(); i++) {									//for every key
-		outtext << vec[i].getWord() << ": " << vec[i].getRep() << endl;		//output its word and give its value of repetition
+		outtext << vec[i].word << ": " << vec[i].rep << endl;		//output its word and give its value of repetition
 	}
 }
 

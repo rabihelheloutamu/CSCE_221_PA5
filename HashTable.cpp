@@ -1,28 +1,5 @@
 #include "HashTable.h"
 
-Key::Key() {
-	rep = 1;		//each key alone has one repetition untill added to another key
-}
-
-Key::~Key() {
-}
-
-void Key::setWord(string str) {
-	word = str;
-}
-
-void Key::setRep(int val) {
-	rep = val;
-}
-
-string Key::getWord() {
-	return word;
-}
-
-int Key::getRep() {
-	return rep;
-}
-
 HashTable::HashTable() {  //default constructor
 	mod = 116009;								/**to reduce collisions, the mod chosen is 1) more than 2 times larger than the unique # of words
 												   2) a prime number to reduce divisibility which will decrease hash division**/
@@ -37,9 +14,9 @@ HashTable::~HashTable() { //default destructor
 
 int HashTable::hash(string s) {					//hash function to determine index where string key goes
 	int ascii = 0;								//initialize var ascii as an integer
-	int size = s.size();						//number of characters in the string
+	int sz = s.size();							//number of characters in the string
 
-	for (int i = 0; i < size; i++) {			//for loop into each letter of each string
+	for (int i = 0; i < sz; i++) {				//for loop into each letter of each string
 		ascii = ascii + (s[i] * cst);			//ascii will be equal to the addition of each letter multiplied by a cst
 	}
 

@@ -10,16 +10,15 @@ ChainingHashTable::~ChainingHashTable() {		//default destructor already built in
 
 }
 
-
 void ChainingHashTable::insert(string key) {
 	int h = hash(key);										//h is the position of the word in the vector (which bucket)
 
 	Key k;													//initialize a key k
-	k.setWord(key);											//set the word of the key to be the input string
-	
+	k.word = key;											//set the word of the key to be the input string
+
 	for (int i = 0; i < vec[h].size(); i++) {				//for every word in the bucket
-		if (vec[h][i].getWord() == key) {					//if the word already exists
-			vec[h][i].setRep(vec[h][i].getRep() + 1);		//then just add one to the value
+		if (vec[h][i].word == key) {						//if the word already exists
+			vec[h][i].rep++;								//then just add one to the value
 			size++;											//size just increased
 			return;											//then return
 		}
@@ -30,13 +29,12 @@ void ChainingHashTable::insert(string key) {
 	size++;													//size just increased
 }
 
-
 int ChainingHashTable::remove(string key) {
 	int h = hash(key);															//locate the bucket position
 	for (int i = 0; i < vec[h].size(); i++) {									//for every key in that bucket
-		if (vec[h][i].getWord() == key) {										//if the key's word = the input string
-			int out = vec[h][i].getRep();										//save the word for outputting
-			vec[h].erase(vec[h].begin()+i-1);									//delete it
+		if (vec[h][i].word == key) {										//if the key's word = the input string
+			int out = vec[h][i].rep;										//save the word for outputting
+			vec[h].erase(vec[h].begin() + i - 1);									//delete it
 			size--;																//size just decreased
 			return out;															//then output it
 		}
@@ -45,12 +43,11 @@ int ChainingHashTable::remove(string key) {
 	return 0;
 }
 
-
 int ChainingHashTable::get(string key) {
 	int h = hash(key);															//locate the bucket position
 	for (int i = 0; i < vec[h].size(); i++) {									//for every key in that bucket
-		if (vec[h][i].getWord() == key) {										//if the key's word = the input string
-			return vec[h][i].getRep();											//then output it
+		if (vec[h][i].word == key) {										//if the key's word = the input string
+			return vec[h][i].rep;											//then output it
 		}
 	}
 	throw std::runtime_error("Get Error: Key not found in Hash Table");			//if the for loop didn't run that means it was empty
@@ -70,7 +67,7 @@ void ChainingHashTable::printAll(string filename) {
 
 	for (int i = 0; i < vec.size(); i++) {												//for every bucket
 		for (int j = 0; j < vec[i].size(); j++) {										//and for every word in each bucket
-			outtext << vec[i][j].getWord() << ": " << vec[i][j].getRep() << endl;		//output its word and give its value of repetition
+			outtext << vec[i][j].word << ": " << vec[i][j].rep << endl;		//output its word and give its value of repetition
 		}
 	}
 }
