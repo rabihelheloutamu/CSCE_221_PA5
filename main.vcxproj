@@ -158,6 +158,7 @@
     <ClCompile Include="ProbingHashTable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\source\repos\CSCE 221\ElHelou_Rabih_126009084_PA4\StopWatch.h" />
     <ClInclude Include="ChainingHashTable.h" />
     <ClInclude Include="DoubleHashTable.h" />
     <ClInclude Include="HashTable.h" />
