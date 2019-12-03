@@ -3,7 +3,7 @@
 
 #include "HashTable.h"
 
-// Linear probing hash table class
+
 class ProbingHashTable : public HashTable {
 private:
 	vector<Key> vec;							//Hash Table is defined as a vector of keys (no buckets)

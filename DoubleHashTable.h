@@ -4,7 +4,6 @@
 #include "HashTable.h"
 
 
-// Double hashing hash table class
 class DoubleHashTable : public HashTable {
 private:
 	vector<Key> vec;							//Hash Table is defined as a vector of keys (no buckets)

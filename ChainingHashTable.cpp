@@ -20,12 +20,14 @@ void ChainingHashTable::insert(string key) {
 	for (int i = 0; i < vec[h].size(); i++) {				//for every word in the bucket
 		if (vec[h][i].getWord() == key) {					//if the word already exists
 			vec[h][i].setRep(vec[h][i].getRep() + 1);		//then just add one to the value
+			size++;											//size just increased
 			return;											//then return
 		}
 	}
 
 	vec[h].push_back(k);									/**if it hasn't been returned then either the bucket was empty
 															   or a collision occured. In either case push back.**/
+	size++;													//size just increased
 }
 
 
@@ -35,6 +37,7 @@ int ChainingHashTable::remove(string key) {
 		if (vec[h][i].getWord() == key) {										//if the key's word = the input string
 			int out = vec[h][i].getRep();										//save the word for outputting
 			vec[h].erase(vec[h].begin()+i-1);									//delete it
+			size--;																//size just decreased
 			return out;															//then output it
 		}
 	}
@@ -54,7 +57,7 @@ int ChainingHashTable::get(string key) {
 	return 0;
 }
 
-// prints number of occurrances for all given strings to a txt file
+
 void ChainingHashTable::printAll(string filename) {
 	string str;								//string variable to fill each position in vector
 	ifstream intxt(filename);				//initialize the ifstream operator
@@ -63,9 +66,11 @@ void ChainingHashTable::printAll(string filename) {
 		insert(str);						//push the str to the back of the vector
 	}
 
-	for (int i = 0; i < vec.size(); i++) {											//for every bucket
-		for (int j = 0; j < vec[i].size(); j++) {									//and for every word in each bucket
-			cout << vec[i][j].getWord() << ": " << vec[i][j].getRep() << endl;		//output its word and give its value of repetition
+	ofstream outtext("Chaining.txt");
+
+	for (int i = 0; i < vec.size(); i++) {												//for every bucket
+		for (int j = 0; j < vec[i].size(); j++) {										//and for every word in each bucket
+			outtext << vec[i][j].getWord() << ": " << vec[i][j].getRep() << endl;		//output its word and give its value of repetition
 		}
 	}
 }

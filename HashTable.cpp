@@ -46,5 +46,7 @@ int HashTable::hash(string s) {					//hash function to determine index where str
 	return ascii % mod;							//the hash will be total ascii mod some number chosen
 }
 
-/** NOTE: I did not include isEmpty here because the vec representing the hash will be defined separately...
-          in each HashTable method itself.  **/
+bool HashTable::isEmpty() {
+	if (size == 0) { return true; }				//if its empty: true
+	else { return false; }						//if not: false
+}
