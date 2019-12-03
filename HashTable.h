@@ -11,7 +11,7 @@ using namespace std;
 
 struct Key {		//defenition of a key for our purpose in hash tables:
 	string word;	//1) a string of characters aka a word
-	int rep;		//2) how many times it was repeated
+	int rep = 1;	//2) how many times it was repeated
 };
 
 class HashTable{				//Universal Hash Table Definition

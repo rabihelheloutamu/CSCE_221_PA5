@@ -17,7 +17,7 @@ int HashTable::hash(string s) {					//hash function to determine index where str
 	int sz = s.size();							//number of characters in the string
 
 	for (int i = 0; i < sz; i++) {				//for loop into each letter of each string
-		ascii = ascii + (s[i] * cst);			//ascii will be equal to the addition of each letter multiplied by a cst
+		ascii = ascii + ((int)s[i] * cst);		//ascii will be equal to the addition of each letter multiplied by a cst
 	}
 
 	return ascii % mod;							//the hash will be total ascii mod some number chosen
