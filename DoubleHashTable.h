@@ -6,13 +6,11 @@
 
 // Double hashing hash table class
 class DoubleHashTable : public HashTable {
-    private:
-    // helper functions
-    int secondHash(std::string s);
-
-    // TODO: insert additional variables here
+private:
+	vector<Key> vec;							//Hash Table is defined as a vector of keys (no buckets)
+    int secondHash(std::string s);				//double hashing requires a secondn hash during collisions
     
-    public: 
+public: 
     DoubleHashTable();
     ~DoubleHashTable(); 
     void insert(std::string key, int val); 
