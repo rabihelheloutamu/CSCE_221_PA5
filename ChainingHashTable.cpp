@@ -32,10 +32,10 @@ void ChainingHashTable::insert(string key) {
 int ChainingHashTable::remove(string key) {
 	int h = hash(key);															//locate the bucket position
 	for (int i = 0; i < vec[h].size(); i++) {									//for every key in that bucket
-		if (vec[h][i].word == key) {										//if the key's word = the input string
-			int out = vec[h][i].rep;										//save the word for outputting
-			vec[h].erase(vec[h].begin() + i - 1);									//delete it
-			size--;																//size just decreased
+		if (vec[h][i].word == key) {											//if the key's word = the input string
+			int out = vec[h][i].rep;											//save the word for outputting
+			vec[h].erase(vec[h].begin() + i);									//delete it
+			size = size - out;													//size decreased by value
 			return out;															//then output it
 		}
 	}
@@ -46,11 +46,11 @@ int ChainingHashTable::remove(string key) {
 int ChainingHashTable::get(string key) {
 	int h = hash(key);															//locate the bucket position
 	for (int i = 0; i < vec[h].size(); i++) {									//for every key in that bucket
-		if (vec[h][i].word == key) {										//if the key's word = the input string
-			return vec[h][i].rep;											//then output it
+		if (vec[h][i].word == key) {											//if the key's word = the input string
+			return vec[h][i].rep;												//then output it
 		}
 	}
-	throw std::runtime_error("Get Error: Key not found in Hash Table");			//if the for loop didn't run that means it was empty
+	
 	return 0;
 }
 

@@ -7,6 +7,7 @@ HashTable::HashTable() {  //default constructor
 	cst = 395;									/**taking "cab" to be the smallest ascii valued 3 letter word, 395 is the
 												   smallest integer we can multiply such that every final ascii value is
 												   is greater than 116009, so that ascii % mod is a valid return number   **/
+	size = 0;
 }
 
 HashTable::~HashTable() { //default destructor
@@ -24,6 +25,5 @@ int HashTable::hash(string s) {					//hash function to determine index where str
 }
 
 bool HashTable::isEmpty() {
-	if (size == 0) { return true; }				//if its empty: true
-	else { return false; }						//if not: false
+	return size == 0;
 }

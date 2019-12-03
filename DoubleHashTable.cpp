@@ -37,13 +37,13 @@ void DoubleHashTable::insert(string key) {
 
 int DoubleHashTable::remove(string key) {
 	Key k;																		//initialize a key
-	k.rep = 0;																//make that key completely emtpy
+	k.rep = 0;																	//make that key completely emtpy
 
 	for (int i = 0; i < vec.size(); i++) {										//iterate through the entire vector since collisions may have occured
-		if (vec[i].word == key) {											//if the word is found
-			int out = vec[i].rep;											//save it's value for outputting
+		if (vec[i].word == key) {												//if the word is found
+			int out = vec[i].rep;												//save it's value for outputting
 			vec[i] = k;															//set the value to empty
-			size--;																//size just decreased
+			size = size - out;													//size decreased by value
 			return out;															//return the old value
 		}
 	}
@@ -54,12 +54,11 @@ int DoubleHashTable::remove(string key) {
 
 int DoubleHashTable::get(string key) {
 	for (int i = 0; i < vec.size(); i++) {										//iterate through the entire vector since collisions may have occured
-		if (vec[i].word == key) {											//if the word is found
-			return vec[i].rep;												//return it's value
+		if (vec[i].word == key) {												//if the word is found
+			return vec[i].rep;													//return it's value
 		}
 	}
 
-	throw std::runtime_error("Remove Error: Key not found in Hash Table");		//for loop exited that means the key didn't exist
 	return 0;
 }
 

@@ -42,7 +42,7 @@ int ProbingHashTable::remove(string key) {
 		if (vec[i].word == key) {												//if the word is found
 			int out = vec[i].rep;												//save it's value for outputting
 			vec[i] = k;															//set the value to empty
-			size--;																//size just decreased
+			size = size - out;													//size decreased by value
 			return out;															//return the old value
 		}
 	}
@@ -58,7 +58,6 @@ int ProbingHashTable::get(string key) {
 		}
 	}
 
-	throw std::runtime_error("Remove Error: Key not found in Hash Table");		//for loop exited that means the key didn't exist
 	return 0;
 }
 
