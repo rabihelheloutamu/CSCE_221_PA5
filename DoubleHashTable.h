@@ -13,10 +13,10 @@ private:
 public: 
     DoubleHashTable();
     ~DoubleHashTable(); 
-    void insert(std::string key, int val); 
-    int remove(std::string key); 
-    int get(std::string key); 
-    void printAll(std::string filename);
+    void insert(string key); 
+    int remove(string key); 
+    int get(string key); 
+    void printAll(string filename);
 };
 
 #endif
