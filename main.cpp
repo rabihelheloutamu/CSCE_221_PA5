@@ -9,6 +9,6 @@ int main()
 	ChainingHashTable C;
 
 	//P.printAll("dictionary.txt");
-	D.printAll("dictionary.txt");
+	//D.printAll("dictionary.txt");
 	//C.printAll("dictionary.txt");
 }
